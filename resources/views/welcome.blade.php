@@ -10,8 +10,8 @@
     
     <div class="bg-[#1a1a1a] border border-[#333] rounded-lg p-8 w-full max-w-3xl shadow-lg">
         
-        <h1 class="text-white text-lg font-semibold tracking-wide">Nabil</h1>
-        <p class="text-gray-400 text-sm mt-1 mb-6">[NIM_KAMU]</p>
+        <h1 class="text-white text-lg font-semibold tracking-wide">Nabil Nasruddin Al Mutawakkil</h1>
+        <p class="text-gray-400 text-sm mt-1 mb-6">NIM: 20230140002</p>
         
         <button class="bg-[#f3f4f6] hover:bg-white text-black font-medium py-2 px-4 rounded transition duration-200">
             Modul Pertemuan 1
