@@ -30,7 +30,7 @@
 
                     <div class="flex justify-end gap-2">
                         <a href="{{ route('product.index') }}" class="bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded">Back to List</a>
-                        <a href="{{ route('product.edit', $product->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded">Edit</a>
+                        <x-edit-button :url="route('product.edit', $product->id)" />
                     </div>
 
                 </div>

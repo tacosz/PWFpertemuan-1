@@ -17,9 +17,7 @@
                     @endif
 
                     <div class="mb-4">
-                        <a href="{{ route('product.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-                            Add Product
-                        </a>
+                        <x-add-product :url="route('product.create')" name="Add Product" />
                     </div>
 
                     <table class="table-auto w-full text-left border-collapse">
@@ -39,12 +37,8 @@
                                     <td class="p-4">{{ number_format($product->price, 2) }}</td>
                                     <td class="p-4 flex gap-2">
                                         <a href="{{ route('product.show', $product->id) }}" class="bg-indigo-500 hover:bg-indigo-700 text-white font-bold py-1 px-3 rounded text-sm">View</a>
-                                        <a href="{{ route('product.edit', $product->id) }}" class="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-1 px-3 rounded text-sm">Edit</a>
-                                        <form action="{{ route('product.destroy', $product->id) }}" method="POST" onsubmit="return confirm('Are you sure?');">
-                                            @csrf
-                                            @method('DELETE')
-                                            <button type="submit" class="bg-red-500 hover:bg-red-700 text-white font-bold py-1 px-3 rounded text-sm">Delete</button>
-                                        </form>
+                                        <x-edit-button :url="route('product.edit', $product->id)" />
+                                        <x-delete-button :action="route('product.destroy', $product->id)" />
                                     </td>
                                 </tr>
                             @endforeach
