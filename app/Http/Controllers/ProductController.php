@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Product;
+use App\Http\Requests\StoreProductRequest;
+use App\Http\Requests\UpdateProductRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -19,13 +21,8 @@ class ProductController extends Controller
         return view('product.create');
     }
 
-    public function store(Request $request)
+    public function store(StoreProductRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'qty' => 'required|integer|min:0',
-            'price' => 'required|numeric|min:0',
-        ]);
 
         Product::create([
             'name' => $request->name,
@@ -51,15 +48,9 @@ class ProductController extends Controller
         return view('product.edit', compact('product'));
     }
 
-    public function update(Request $request, Product $product)
+    public function update(UpdateProductRequest $request, Product $product)
     {
         \Illuminate\Support\Facades\Gate::authorize('update', $product);
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'qty' => 'required|integer|min:0',
-            'price' => 'required|numeric|min:0',
-        ]);
 
         $product->update($request->only('name', 'qty', 'price'));
 
