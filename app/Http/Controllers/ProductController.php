@@ -47,17 +47,13 @@ class ProductController extends Controller
 
     public function edit(Product $product)
     {
-        if ($product->user_id !== Auth::id()) {
-            abort(403);
-        }
+        \Illuminate\Support\Facades\Gate::authorize('update', $product);
         return view('product.edit', compact('product'));
     }
 
     public function update(Request $request, Product $product)
     {
-        if ($product->user_id !== Auth::id()) {
-            abort(403);
-        }
+        \Illuminate\Support\Facades\Gate::authorize('update', $product);
 
         $request->validate([
             'name' => 'required|string|max:255',
@@ -72,9 +68,7 @@ class ProductController extends Controller
 
     public function destroy(Product $product)
     {
-        if ($product->user_id !== Auth::id()) {
-            abort(403);
-        }
+        \Illuminate\Support\Facades\Gate::authorize('delete', $product);
         
         $product->delete();
 
