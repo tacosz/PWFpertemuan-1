@@ -7,6 +7,19 @@
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-[#0f0f0f] flex items-center justify-center min-h-screen font-sans">
+    @if (Route::has('login'))
+        <div class="fixed top-0 right-0 p-6 text-right z-10">
+            @auth
+                <a href="{{ url('/dashboard') }}" class="font-semibold text-gray-400 hover:text-white">Dashboard</a>
+            @else
+                <a href="{{ route('login') }}" class="font-semibold text-gray-400 hover:text-white">Log in</a>
+
+                @if (Route::has('register'))
+                    <a href="{{ route('register') }}" class="ml-4 font-semibold text-gray-400 hover:text-white">Register</a>
+                @endif
+            @endauth
+        </div>
+    @endif
     
     <div class="bg-[#1a1a1a] border border-[#333] rounded-lg p-8 w-full max-w-3xl shadow-lg">
         
