@@ -13,6 +13,7 @@ Route::get('/dashboard', function () {
 
 Route::middleware('auth')->group(function () {
     Route::resource('product', \App\Http\Controllers\ProductController::class);
+    Route::resource('category', \App\Http\Controllers\CategoryController::class)->middleware('can:manage-category');
     Route::get('/about', [\App\Http\Controllers\AboutController::class, 'index'])->name('about');
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');

@@ -18,7 +18,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('product.create');
+        $categories = \App\Models\Category::all();
+        return view('product.create', compact('categories'));
     }
 
     public function store(StoreProductRequest $request)
@@ -29,6 +30,7 @@ class ProductController extends Controller
             'qty' => $request->qty,
             'price' => $request->price,
             'user_id' => Auth::id(),
+            'category_id' => $request->category_id,
         ]);
 
         return redirect()->route('product.index')->with('success', 'Product created successfully.');
@@ -45,14 +47,15 @@ class ProductController extends Controller
     public function edit(Product $product)
     {
         \Illuminate\Support\Facades\Gate::authorize('update', $product);
-        return view('product.edit', compact('product'));
+        $categories = \App\Models\Category::all();
+        return view('product.edit', compact('product', 'categories'));
     }
 
     public function update(UpdateProductRequest $request, Product $product)
     {
         \Illuminate\Support\Facades\Gate::authorize('update', $product);
 
-        $product->update($request->only('name', 'qty', 'price'));
+        $product->update($request->only('name', 'qty', 'price', 'category_id'));
 
         return redirect()->route('product.index')->with('success', 'Product updated successfully.');
     }
